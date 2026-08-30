@@ -25,8 +25,9 @@
 - [x] README, MIT license, AGENTS.md, WEBMCP_TESTING.md, SECURITY.md, and `.env.example`
 - [x] Relational schema, migration, labeled seed corpus, and tests
 - [x] No required API key
-- [x] Public GitHub repository created
-- [x] Repository URL inserted in submission copy
+- [x] Public GitHub repository created and source pushed
+- [x] Repository URL inserted in Devpost
+- [x] Final secret scan and broken-link review
 
 ## Video and Devpost
 
@@ -36,6 +37,6 @@
 - [ ] Insert the real video URL in Devpost
 - [x] Devpost narrative copy drafted
 - [ ] Add production URL, GitHub URL, and video URL using real values only
-- [ ] Preview every field and verify the live links
-- [ ] Confirm license and challenge eligibility fields
+- [x] Preview every saved field and verify the live links
+- [x] Confirm license and challenge eligibility fields
 - [ ] Final Devpost submission requires the entrant's explicit action-time confirmation
