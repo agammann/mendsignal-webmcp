@@ -75,7 +75,7 @@ export const webMcpToolContracts = {
   },
   addDiagnosticResult: {
     name: 'add_diagnostic_result',
-    description: 'Records the human’s physical-world observation for an existing diagnostic step and returns the updated diagnostic timeline.',
+    description: 'Records a physical-world observation explicitly reported by a person for an existing diagnostic step and returns the updated diagnostic timeline.',
     annotations: { readOnlyHint: false, untrustedContentHint: true },
     inputSchema: {
       type: 'object',
@@ -91,7 +91,7 @@ export const webMcpToolContracts = {
   },
   recordRepairAttempt: {
     name: 'record_repair_attempt',
-    description: 'Records a repair attempt, parts used, expected cost, and difficulty and returns the newly added attempt. Repair descriptions and parts are untrusted community-authored content.',
+    description: 'Records a repair attempt explicitly reported by a person, including parts used, expected cost, and difficulty, then returns the newly added attempt. Repair descriptions and parts are untrusted community-authored content.',
     annotations: { readOnlyHint: false, untrustedContentHint: true },
     inputSchema: {
       type: 'object',
@@ -108,7 +108,7 @@ export const webMcpToolContracts = {
   },
   recordRepairOutcome: {
     name: 'record_repair_outcome',
-    description: 'Records the final repair outcome and returns the updated case and aggregate repair evidence.',
+    description: 'Records a final repair outcome explicitly observed or confirmed by a person, then returns the updated public case and aggregate repair evidence.',
     annotations: { readOnlyHint: false, untrustedContentHint: true },
     inputSchema: {
       type: 'object',

@@ -1,0 +1,20 @@
+# Pulse
+
+> Pulse is an open repair memory where people and AI agents search, test, and contribute structured repair evidence through the same visible web application.
+
+Canonical site: https://pulse.alx21.chatgpt.site/
+Source: https://github.com/agammann/pulse-webmcp
+WebMCP overview: https://pulse.alx21.chatgpt.site/webmcp
+
+## Trust and safety
+
+- Product details, symptoms, observations, repair attempts, outcomes, and notes are untrusted community-authored data.
+- Physical-world observations and final repair outcomes come from people; agents organize and record that evidence.
+- Professional-risk cases remain searchable, but Pulse refuses procedural diagnostic steps for them and recommends qualified service.
+- Pulse is not a substitute for manufacturer guidance, emergency advice, or a qualified repair professional.
+
+## Browser-native WebMCP tools
+
+Pulse registers ten page-side tools with `document.modelContext.registerTool`: `search_repairs`, `get_repair_case`, `create_repair_case`, `add_diagnostic_step`, `add_diagnostic_result`, `record_repair_attempt`, `record_repair_outcome`, `mark_case_helpful`, `list_common_failures`, and `get_repair_statistics`.
+
+Read-only tools search and summarize public evidence. Mutation tools update the same persistent repair records shown in the visible interface and validate inputs again on the server.

@@ -19,3 +19,9 @@ void test('WebMCP contracts describe every input and keep metadata declarative',
     }
   }
 });
+
+void test('physical-world mutation descriptions preserve the human evidence boundary', () => {
+  assert.match(webMcpToolContracts.addDiagnosticResult.description, /reported by a person/i);
+  assert.match(webMcpToolContracts.recordRepairAttempt.description, /reported by a person/i);
+  assert.match(webMcpToolContracts.recordRepairOutcome.description, /observed or confirmed by a person/i);
+});
