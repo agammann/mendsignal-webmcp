@@ -34,7 +34,7 @@
 - [x] Exact sub-three-minute demo script finalized
 - [x] Record narration and screen capture
 - [x] Upload a public or unlisted YouTube video with audio
-- [x] Insert the real video URL in Devpost: https://youtu.be/TlpEn9vFPhI
+- [x] Insert the real video URL in Devpost: https://youtu.be/HALFLa5KM6E
 - [x] Devpost narrative copy drafted
 - [x] Add production URL, GitHub URL, and video URL using real values only
 - [x] Preview every saved field and verify the live links
