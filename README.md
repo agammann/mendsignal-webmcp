@@ -93,7 +93,7 @@ Open `http://localhost:3000`. No environment variables or user account are requi
 
 ## Database and seed data
 
-The D1 binding is named `DB` in `.openai/hosting.json`. The canonical Drizzle schema is in `db/schema.ts`; deployable SQL is in `drizzle/0000_mendsignal.sql`.
+The D1 binding is named `DB` in `.openai/hosting.json`. The canonical Drizzle schema is in `db/schema.ts`; deployable SQL is in `drizzle/0000_pulse.sql`.
 
 On the first database-backed request, `ensureDatabase()` applies idempotent table/index creation and seeds the 30 demo cases if the database is empty. Seed source lives in `lib/seed-data.ts`. Every demo record is marked `demo_record: true` in API output and the interface.
 
@@ -145,3 +145,4 @@ Built for the OpenAI WebMCP Challenge. Pulse uses the challenge's current impera
 ## License
 
 MIT © 2026 Pulse contributors. See [LICENSE](LICENSE).
+
