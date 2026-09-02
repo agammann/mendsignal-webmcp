@@ -15,7 +15,7 @@ export function NewRepairForm() {
     const input = { category: form.get('category'), brand: form.get('brand'), model: form.get('model'), product_name: form.get('product_name'), problem_description: form.get('problem_description'), symptoms: String(form.get('symptoms')).split(',').map((value) => value.trim()).filter(Boolean), safety_classification: form.get('safety_classification'), difficulty: form.get('difficulty') };
     try {
       const response = await fetch('/api/repairs', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) }); const data: any = await response.json();
-      if (!response.ok) throw new Error(data.error); setCreated(data.repair); window.dispatchEvent(new CustomEvent('mendsignal:mutated', { detail: { description: `Human created ${data.repair.id}`, repair: data.repair } }));
+      if (!response.ok) throw new Error(data.error); setCreated(data.repair); window.dispatchEvent(new CustomEvent('pulse:mutated', { detail: { description: `Human created ${data.repair.id}`, repair: data.repair } }));
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'The repair could not be created.'); }
     finally { setLoading(false); }
   };
@@ -36,3 +36,4 @@ export function NewRepairForm() {
     </form>
   );
 }
+
