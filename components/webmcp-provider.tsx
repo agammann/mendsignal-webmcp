@@ -40,13 +40,13 @@ export function WebMcpProvider() {
       setMessage(detail?.description ?? 'The page was updated through WebMCP');
       refreshActivity();
     };
-    window.addEventListener('mendsignal:mutated', onMutation);
-    return () => window.removeEventListener('mendsignal:mutated', onMutation);
+    window.addEventListener('pulse:mutated', onMutation);
+    return () => window.removeEventListener('pulse:mutated', onMutation);
   }, []);
 
   const toolDefinitions = useMemo<WebMcpTool[]>(() => {
     const changed = (description: string, repair?: any) => {
-      window.dispatchEvent(new CustomEvent('mendsignal:mutated', { detail: { description, repair } }));
+      window.dispatchEvent(new CustomEvent('pulse:mutated', { detail: { description, repair } }));
     };
     return [
       {
@@ -121,3 +121,4 @@ export function WebMcpProvider() {
     </aside>
   );
 }
+
