@@ -45,7 +45,7 @@ export default defineConfig(async () => {
   // A lightweight preview mode lets the human-facing shell run in restricted
   // local sandboxes. Full builds and deployments still use the Cloudflare
   // plugin and the real D1 binding.
-  const staticPreview = process.env.MENDSIGNAL_STATIC_PREVIEW === '1';
+  const staticPreview = process.env.PULSE_STATIC_PREVIEW === '1';
   const cloudflare = staticPreview
     ? null
     : (await import('@cloudflare/vite-plugin')).cloudflare;
@@ -66,3 +66,4 @@ export default defineConfig(async () => {
     ].filter(Boolean),
   };
 });
+
