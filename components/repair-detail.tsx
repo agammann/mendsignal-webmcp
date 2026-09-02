@@ -19,8 +19,8 @@ export function RepairDetail({ initialRepair }: { initialRepair: RepairCase }) {
       if (detail?.repair?.id === repair.id) setRepair(detail.repair); else refresh();
       setNotice('This case was updated through WebMCP.');
     };
-    window.addEventListener('mendsignal:mutated', onMutation);
-    return () => window.removeEventListener('mendsignal:mutated', onMutation);
+    window.addEventListener('pulse:mutated', onMutation);
+    return () => window.removeEventListener('pulse:mutated', onMutation);
   }, [repair.id]);
 
   const vote = async (voteType: string) => {
@@ -66,3 +66,4 @@ export function RepairDetail({ initialRepair }: { initialRepair: RepairCase }) {
     </div>
   );
 }
+
