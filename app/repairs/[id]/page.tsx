@@ -7,8 +7,8 @@ import { seedCases } from '@/lib/seed-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params; const repair = seedCases.find((item) => item.id === id);
-  if (!repair) return { title: `${id} · MendSignal`, openGraph: { images: [] }, twitter: { images: [] } };
-  const title = `${repair.problem_description} · MendSignal`;
+  if (!repair) return { title: `${id} · Pulse`, openGraph: { images: [] }, twitter: { images: [] } };
+  const title = `${repair.problem_description} · Pulse`;
   const description = `${repair.brand} ${repair.product_name}: ${repair.outcome?.final_fix ?? repair.symptoms.join(', ')}`;
   return { title, description, openGraph: { title, description, images: [] }, twitter: { title, description, images: [] } };
 }

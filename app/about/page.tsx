@@ -11,8 +11,8 @@ export default function AboutPage() {
       <section className="about-hero">
         <p className="eyebrow">The open repair mission</p>
         <h1>Humans test the fix.<br /><span>Agents remember what worked.</span></h1>
-        <p>Repair knowledge is everywhere and nowhere. MendSignal turns individual physical-world observations into structured evidence the next person—and their agent—can use.</p>
-        <figure className="mission-image"><img src="/og.png" alt="MendSignal timeline connecting human repair observations to verified evidence" /></figure>
+        <p>Repair knowledge is everywhere and nowhere. Pulse turns individual physical-world observations into structured evidence the next person—and their agent—can use.</p>
+        <figure className="mission-image"><img src="/og.png" alt="Pulse timeline connecting human repair observations to verified evidence" /></figure>
       </section>
       <section className="human-agent-grid">
         <article><span><Bot /></span><p className="mono-label">THE AGENT</p><h2>Does the information work.</h2><ul>{agentTasks.map((task) => <li key={task}><CheckIcon />{task}</li>)}</ul></article>
@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div><span><Wrench /></span><strong>Test</strong><p>The person performs the next appropriate action.</p></div><ArrowRight />
         <div><span><HeartHandshake /></span><strong>Remember</strong><p>The outcome becomes reusable public knowledge.</p></div>
       </section>
-      <section className="standards-note"><ShieldCheck /><div><p className="mono-label">OPEN BY INTENT</p><h2>Inspired by the Open Repair Data Standard.</h2><p>MendSignal aligns product information, problems, repair status, barriers, and outcomes where practical. It is an independent hackathon project and does not claim affiliation with the Open Repair Alliance.</p></div></section>
+      <section className="standards-note"><ShieldCheck /><div><p className="mono-label">OPEN BY INTENT</p><h2>Inspired by the Open Repair Data Standard.</h2><p>Pulse aligns product information, problems, repair status, barriers, and outcomes where practical. It is an independent hackathon project and does not claim affiliation with the Open Repair Alliance.</p></div></section>
     </main>
   );
 }

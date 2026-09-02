@@ -109,5 +109,5 @@ export const parseVote = (value: unknown) => {
 export const apiError = (error: unknown) => {
   const status = error instanceof ValidationError ? error.status : 500;
   const message = error instanceof Error ? error.message : 'Unexpected error.';
-  return Response.json({ ok: false, error: status === 500 ? 'MendSignal could not complete that request.' : message }, { status });
+  return Response.json({ ok: false, error: status === 500 ? 'Pulse could not complete that request.' : message }, { status });
 };

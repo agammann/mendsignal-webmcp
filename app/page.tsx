@@ -20,9 +20,9 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden">
       <header className="site-header">
-        <Link className="brand" href="/" aria-label="MendSignal home">
+        <Link className="brand" href="/" aria-label="Pulse home">
           <span className="brand-mark"><Wrench aria-hidden="true" /></span>
-          <span>MendSignal</span>
+          <span>Pulse</span>
         </Link>
         <nav aria-label="Primary navigation">
           <Link href="/repairs">Explore Repairs</Link>
@@ -51,7 +51,7 @@ export default function Home() {
           <div className="connection-note">
             <span className="status-dot" />
             <strong>Agent connected?</strong>
-            MendSignal exposes structured repair tools directly through WebMCP.
+            Pulse exposes structured repair tools directly through WebMCP.
           </div>
 
           <div className="hero-stats" aria-label="Community statistics">
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="workflow-strip" aria-label="How MendSignal works">
+      <section className="workflow-strip" aria-label="How Pulse works">
         <div><span>01</span><strong>Describe the symptom</strong><p>Share what you see, hear, or feel.</p></div>
         <ArrowRight aria-hidden="true" />
         <div><span>02</span><strong>Test with your agent</strong><p>Compare evidence and record observations.</p></div>

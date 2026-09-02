@@ -39,7 +39,7 @@ export function RepairDetail({ initialRepair }: { initialRepair: RepairCase }) {
         <p className="detail-product">{repair.brand} {repair.product_name} <span>·</span> {repair.model} <span>·</span> {repair.category}</p>
         <div className="tag-list detail-tags">{repair.symptoms.map((symptom) => <span key={symptom}>{symptom}</span>)}</div>
         {notice && <div className="success-notice"><CheckCircle2 /> {notice}</div>}
-        {professional && <div className="professional-banner"><AlertTriangle /><div><strong>Qualified service recommended</strong><p>This case is available for history and evidence only. MendSignal does not provide procedural instructions for mains electricity, gas, high-voltage, critical vehicle systems, structural repair, or hazardous materials.</p></div></div>}
+        {professional && <div className="professional-banner"><AlertTriangle /><div><strong>Qualified service recommended</strong><p>This case is available for history and evidence only. Pulse does not provide procedural instructions for mains electricity, gas, high-voltage, critical vehicle systems, structural repair, or hazardous materials.</p></div></div>}
 
         <section className="timeline-section">
           <div className="section-heading"><div><p className="mono-label">CHRONOLOGICAL CASE HISTORY</p><h2>Diagnostic timeline</h2></div><span>{repair.diagnostic_steps.length} recorded tests</span></div>

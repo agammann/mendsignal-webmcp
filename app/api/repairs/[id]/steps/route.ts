@@ -7,7 +7,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   try {
     const { id } = await context.params;
     const existing = await getRepairCase(id);
-    if (existing?.safety_classification === 'professional_recommended') return Response.json({ ok: false, error: 'This case is classified as professional recommended. MendSignal preserves its history but does not add procedural diagnostic instructions.' }, { status: 403 });
+    if (existing?.safety_classification === 'professional_recommended') return Response.json({ ok: false, error: 'This case is classified as professional recommended. Pulse preserves its history but does not add procedural diagnostic instructions.' }, { status: 403 });
     const repair = await addDiagnosticStep(id, parseStep(await request.json()));
     if (!repair) return Response.json({ ok: false, error: 'Repair case not found.' }, { status: 404 });
     return Response.json({ ok: true, repair }, { status: 201 });

@@ -2,15 +2,15 @@
 
 ## Fast judge path
 
-1. Open the deployed MendSignal URL in ChatGPT's in-app browser.
+1. Open the deployed Pulse URL in ChatGPT's in-app browser.
 2. Ask: **“What WebMCP tools does this site expose?”** Confirm that ten tools are discoverable.
-3. Ask: **“Search MendSignal for game controller stick drift repairs.”** Confirm structured matches include repair evidence and safety classification.
+3. Ask: **“Search Pulse for game controller stick drift repairs.”** Confirm structured matches include repair evidence and safety classification.
 4. Ask: **“Open the most successful matching repair and tell me what people tried.”** Confirm a complete case is returned.
 5. Ask: **“Create a new repair case for a controller with left-stick drift.”** Confirm a new `MS-...` ID and visible case appear.
 6. Ask: **“Add a diagnostic step to inspect the joystick for contamination.”** Confirm the timeline updates.
 7. Physically test or use the demo observation, then ask: **“Record that cleaning did not fix the issue.”** Confirm the observation appears in the same timeline.
 8. Ask: **“Record the final repair as fixed. The final fix was replacing the joystick module, cost $12, took 35 minutes.”** Confirm the case status becomes Fixed.
-9. Ask: **“Show me MendSignal's repair statistics.”** Confirm the aggregate result reflects persisted data.
+9. Ask: **“Show me Pulse's repair statistics.”** Confirm the aggregate result reflects persisted data.
 
 Keep the Agent Activity dock expanded during steps 3–9. It should make the active tool and resulting state change visible.
 
@@ -20,7 +20,7 @@ Use Chrome 149 or newer. In builds where WebMCP is still experimental:
 
 1. Open `chrome://flags/#enable-webmcp-testing`.
 2. Enable the WebMCP testing flag and relaunch Chrome.
-3. Open the deployed MendSignal site.
+3. Open the deployed Pulse site.
 4. Open DevTools and use the WebMCP testing/agent surface available in that Chrome build.
 5. Inspect the registered tools and call `search_repairs` with `{ "query": "controller stick drift", "limit": 5 }`.
 

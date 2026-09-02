@@ -2,7 +2,7 @@
 
 ## Supported version
 
-The current deployed `main` branch is supported. MendSignal is a hackathon MVP; do not use it as a substitute for a qualified repair professional, manufacturer documentation, or emergency guidance.
+The current deployed `main` branch is supported. Pulse is a hackathon MVP; do not use it as a substitute for a qualified repair professional, manufacturer documentation, or emergency guidance.
 
 ## Reporting a vulnerability
 
@@ -36,7 +36,7 @@ Every case is classified:
 - `moderate_risk`: opening consumer electronics, battery work, internal low-voltage repair
 - `professional_recommended`: mains electricity, gas, high voltage, airbags, critical brakes, structure, or hazardous materials
 
-Professional-risk histories remain searchable because failure evidence can still help a user make an informed service decision. MendSignal does not provide procedural steps for those cases: the mutation endpoint refuses diagnostic-step creation with `403` and recommends qualified professional service.
+Professional-risk histories remain searchable because failure evidence can still help a user make an informed service decision. Pulse does not provide procedural steps for those cases: the mutation endpoint refuses diagnostic-step creation with `403` and recommends qualified professional service.
 
 Safety classification is not a guarantee. Users must follow manufacturer guidance, disconnect power where applicable, use appropriate protective equipment, and stop when conditions exceed their skills or local regulations.
 

@@ -1,4 +1,4 @@
-# MendSignal submission checklist
+# Pulse submission checklist
 
 ## Build and application
 
@@ -32,11 +32,11 @@
 ## Video and Devpost
 
 - [x] Exact sub-three-minute demo script finalized
-- [ ] Record narration and screen capture
-- [ ] Upload a public or unlisted YouTube video with audio
-- [ ] Insert the real video URL in Devpost
+- [x] Record narration and screen capture
+- [x] Upload a public or unlisted YouTube video with audio
+- [x] Insert the real video URL in Devpost: https://youtu.be/TlpEn9vFPhI
 - [x] Devpost narrative copy drafted
-- [ ] Add production URL, GitHub URL, and video URL using real values only
+- [x] Add production URL, GitHub URL, and video URL using real values only
 - [x] Preview every saved field and verify the live links
 - [x] Confirm license and challenge eligibility fields
-- [ ] Final Devpost submission requires the entrant's explicit action-time confirmation
+- [x] Final Devpost submission explicitly confirmed by the entrant and verified via the `Project submitted!` success state

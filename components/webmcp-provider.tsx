@@ -10,7 +10,7 @@ type Status = 'checking' | 'available' | 'unavailable';
 const json = async (path: string, init?: RequestInit) => {
   const response = await fetch(path, { ...init, headers: { 'content-type': 'application/json', ...(init?.headers ?? {}) } });
   const data: any = await response.json();
-  if (!response.ok) throw new Error(data.error ?? 'MendSignal request failed.');
+  if (!response.ok) throw new Error(data.error ?? 'Pulse request failed.');
   return data;
 };
 

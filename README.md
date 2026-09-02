@@ -1,17 +1,17 @@
-# MendSignal
+# Pulse
 
 > The open repair memory for humans and agents.
 
-MendSignal is a public repair evidence network where people test fixes in the physical world and AI agents preserve what actually worked through WebMCP.
+Pulse is a public repair evidence network where people test fixes in the physical world and AI agents preserve what actually worked through WebMCP.
 
-- Live application: https://mendsignal.alx21.chatgpt.site
-- Source repository: https://github.com/agammann/mendsignal-webmcp
+- Live application: https://pulse.alx21.chatgpt.site
+- Source repository: https://github.com/agammann/pulse
 
-![MendSignal social preview](public/og.png)
+![Pulse social preview](public/og.png)
 
 ## Why WebMCP
 
-Most websites force an agent to reverse-engineer a visual interface. MendSignal exposes the real application capabilities instead. A compatible browser can discover ten imperative tools through `document.modelContext.registerTool(...)`, validate typed inputs, and receive compact structured results without scraping the DOM.
+Most websites force an agent to reverse-engineer a visual interface. Pulse exposes the real application capabilities instead. A compatible browser can discover ten imperative tools through `document.modelContext.registerTool(...)`, validate typed inputs, and receive compact structured results without scraping the DOM.
 
 The WebMCP layer is not a second demo API: every tool calls the same persisted application routes used by the human interface. Mutations create visible repair history and write to the activity log.
 
@@ -22,9 +22,9 @@ The WebMCP layer is not a second demo API: every tool calls the same persisted a
 3. The agent creates a case and proposes a safe diagnostic step.
 4. The human performs the physical test and reports the observation.
 5. The agent records the result and, when appropriate, the repair attempt and outcome.
-6. MendSignal makes that evidence available to the next human-agent pair.
+6. Pulse makes that evidence available to the next human-agent pair.
 
-The AI does information work. The human interacts with the physical object. MendSignal remembers the result.
+The AI does information work. The human interacts with the physical object. Pulse remembers the result.
 
 ## Product surfaces
 
@@ -83,8 +83,8 @@ Each definition contains explicit JSON Schema, required fields, bounded input le
 Requirements: Node.js 22.13+ and pnpm.
 
 ```bash
-git clone https://github.com/agammann/mendsignal-webmcp.git
-cd mendsignal-webmcp
+git clone https://github.com/agammann/pulse.git
+cd pulse
 pnpm install
 pnpm dev
 ```
@@ -114,23 +114,23 @@ The automated suite covers search, retrieval, case creation, diagnostic-step cre
 
 Community repair text is untrusted data, never trusted tool metadata or agent instruction. Inputs are constrained in both WebMCP JSON Schema and server handlers. Mutation routes validate values, apply basic per-IP rate limiting, and return safe errors. There is no delete tool.
 
-Every repair is classified as low risk, moderate risk, or professional recommended. Professional-risk histories remain readable, but MendSignal refuses procedural diagnostic-step creation and directs the user to qualified service. See [SECURITY.md](SECURITY.md) for the complete trust model and reporting process.
+Every repair is classified as low risk, moderate risk, or professional recommended. Professional-risk histories remain readable, but Pulse refuses procedural diagnostic-step creation and directs the user to qualified service. See [SECURITY.md](SECURITY.md) for the complete trust model and reporting process.
 
 ## Open repair data
 
-MendSignal's concepts are inspired by the Open Repair Data Standard: product identity, problem, repair status, barriers, and outcome are explicit data rather than prose fragments. MendSignal is an independent project and does not claim affiliation with the Open Repair Alliance.
+Pulse's concepts are inspired by the Open Repair Data Standard: product identity, problem, repair status, barriers, and outcome are explicit data rather than prose fragments. Pulse is an independent project and does not claim affiliation with the Open Repair Alliance.
 
 ## Judge demo
 
 Open the deployed site in ChatGPT's in-app browser and ask:
 
-1. “Search MendSignal for controller stick drift.”
+1. “Search Pulse for controller stick drift.”
 2. “Show me the most successful fixes.”
 3. “Create a repair case for a controller with left-stick drift.”
 4. “Add a diagnostic step to inspect the joystick for contamination.”
 5. “Record that cleaning did not fix the issue.”
 6. “Record the final repair as fixed.”
-7. “Show me MendSignal's repair statistics.”
+7. “Show me Pulse's repair statistics.”
 
 Watch the visible Agent Activity panel and repair timeline update as tools run.
 
@@ -140,8 +140,8 @@ The production output is built with `pnpm build` and packaged with its D1 migrat
 
 ## Hackathon
 
-Built for the OpenAI WebMCP Challenge. MendSignal uses the challenge's current imperative WebMCP API and is designed to demonstrate real human-agent collaboration over durable shared state.
+Built for the OpenAI WebMCP Challenge. Pulse uses the challenge's current imperative WebMCP API and is designed to demonstrate real human-agent collaboration over durable shared state.
 
 ## License
 
-MIT © 2026 MendSignal contributors. See [LICENSE](LICENSE).
+MIT © 2026 Pulse contributors. See [LICENSE](LICENSE).

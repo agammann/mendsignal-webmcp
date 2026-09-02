@@ -1,8 +1,8 @@
-# MendSignal agent guide
+# Pulse agent guide
 
 ## Product invariant
 
-MendSignal stores structured evidence from real human observations. Do not turn it into a repair-advice chatbot or create a parallel fake WebMCP layer. Human routes and WebMCP tools must continue to share the same server handlers and D1 state.
+Pulse stores structured evidence from real human observations. Do not turn it into a repair-advice chatbot or create a parallel fake WebMCP layer. Human routes and WebMCP tools must continue to share the same server handlers and D1 state.
 
 ## Safety invariant
 

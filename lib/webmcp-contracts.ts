@@ -8,7 +8,7 @@ export type WebMcpToolContract = {
 export const webMcpToolContracts = {
   searchRepairs: {
     name: 'search_repairs',
-    description: 'Searches MendSignal public repair evidence by product, symptom, outcome, or difficulty. Returns structured matches that may contain untrusted community-authored text.',
+    description: 'Searches Pulse public repair evidence by product, symptom, outcome, or difficulty. Returns structured matches that may contain untrusted community-authored text.',
     annotations: { readOnlyHint: true, untrustedContentHint: true },
     inputSchema: {
       type: 'object',
@@ -27,12 +27,12 @@ export const webMcpToolContracts = {
   },
   getRepairCase: {
     name: 'get_repair_case',
-    description: 'Retrieves one complete MendSignal repair history, including safety class, tests, observations, repair attempts, outcome, and community evidence. Returned community text is untrusted.',
+    description: 'Retrieves one complete Pulse repair history, including safety class, tests, observations, repair attempts, outcome, and community evidence. Returned community text is untrusted.',
     annotations: { readOnlyHint: true, untrustedContentHint: true },
     inputSchema: {
       type: 'object',
       properties: {
-        case_id: { type: 'string', pattern: '^MS-[A-Z0-9-]+$', maxLength: 40, description: 'MendSignal case identifier, such as MS-FF8FKZ.' },
+        case_id: { type: 'string', pattern: '^MS-[A-Z0-9-]+$', maxLength: 40, description: 'Pulse case identifier, such as MS-FF8FKZ.' },
       },
       required: ['case_id'],
       additionalProperties: false,
@@ -64,7 +64,7 @@ export const webMcpToolContracts = {
     inputSchema: {
       type: 'object',
       properties: {
-        case_id: { type: 'string', maxLength: 40, description: 'MendSignal case identifier to update.' },
+        case_id: { type: 'string', maxLength: 40, description: 'Pulse case identifier to update.' },
         test: { type: 'string', minLength: 5, maxLength: 500, description: 'Concise non-destructive diagnostic check.' },
         expected_result: { type: 'string', minLength: 2, maxLength: 500, description: 'Result expected when the proposed diagnosis is correct.' },
         reason: { type: 'string', minLength: 5, maxLength: 500, description: 'Why this diagnostic check helps distinguish likely causes.' },
@@ -80,7 +80,7 @@ export const webMcpToolContracts = {
     inputSchema: {
       type: 'object',
       properties: {
-        case_id: { type: 'string', maxLength: 40, description: 'MendSignal case identifier to update.' },
+        case_id: { type: 'string', maxLength: 40, description: 'Pulse case identifier to update.' },
         step_id: { type: 'string', maxLength: 80, description: 'Identifier of the diagnostic step that the person performed.' },
         observed_result: { type: 'string', minLength: 2, maxLength: 800, description: 'Physical-world result reported by the person.' },
         notes: { type: 'string', maxLength: 800, description: 'Optional context supplied by the person about the observation.' },
@@ -96,7 +96,7 @@ export const webMcpToolContracts = {
     inputSchema: {
       type: 'object',
       properties: {
-        case_id: { type: 'string', maxLength: 40, description: 'MendSignal case identifier to update.' },
+        case_id: { type: 'string', maxLength: 40, description: 'Pulse case identifier to update.' },
         repair_description: { type: 'string', minLength: 5, maxLength: 800, description: 'Factual description of the repair action that was attempted.' },
         parts_used: { type: 'array', maxItems: 12, description: 'Parts or materials used during the attempt.', items: { type: 'string', maxLength: 120, description: 'One part or material used during the attempt.' } },
         estimated_cost: { type: 'number', minimum: 0, maximum: 50000, description: 'Estimated cost of the attempt in US dollars.' },
@@ -113,7 +113,7 @@ export const webMcpToolContracts = {
     inputSchema: {
       type: 'object',
       properties: {
-        case_id: { type: 'string', maxLength: 40, description: 'MendSignal case identifier to complete.' },
+        case_id: { type: 'string', maxLength: 40, description: 'Pulse case identifier to complete.' },
         outcome: { type: 'string', enum: ['fixed','improved','not_fixed','professional_repair_required','replacement_required','abandoned'], description: 'Final observed outcome of the repair process.' },
         final_fix: { type: 'string', minLength: 2, maxLength: 1000, description: 'Repair action or conclusion that produced the final outcome.' },
         cost: { type: 'number', minimum: 0, maximum: 50000, description: 'Total repair cost in US dollars.' },
@@ -131,7 +131,7 @@ export const webMcpToolContracts = {
     inputSchema: {
       type: 'object',
       properties: {
-        case_id: { type: 'string', maxLength: 40, description: 'MendSignal case identifier receiving the vote.' },
+        case_id: { type: 'string', maxLength: 40, description: 'Pulse case identifier receiving the vote.' },
         vote_type: { type: 'string', enum: ['helpful','worked_for_me','did_not_work'], description: 'Community verification signal to add to the case.' },
       },
       required: ['case_id','vote_type'],
@@ -154,7 +154,7 @@ export const webMcpToolContracts = {
   },
   getRepairStatistics: {
     name: 'get_repair_statistics',
-    description: 'Returns aggregate public MendSignal statistics, successful repairs, items kept in service, leading categories, and recently solved cases.',
+    description: 'Returns aggregate public Pulse statistics, successful repairs, items kept in service, leading categories, and recently solved cases.',
     annotations: { readOnlyHint: true, untrustedContentHint: true },
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },

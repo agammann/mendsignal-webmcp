@@ -7,17 +7,17 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mendsignal.alx21.chatgpt.site'),
-  title: 'MendSignal — The open repair memory',
+  metadataBase: new URL('https://pulse.alx21.chatgpt.site'),
+  title: 'Pulse — The open repair memory',
   description: 'Search real repair outcomes, troubleshoot with your AI agent, and contribute what worked back to the open web.',
   openGraph: {
-    title: 'MendSignal — The open repair memory',
+    title: 'Pulse — The open repair memory',
     description: 'Humans test the fix. Agents remember what worked.',
-    images: [{ url: '/og.png', width: 1536, height: 1024, alt: 'MendSignal repair evidence network' }],
+    images: [{ url: '/og.png', width: 1536, height: 1024, alt: 'Pulse repair evidence network' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MendSignal — The open repair memory',
+    title: 'Pulse — The open repair memory',
     description: 'Humans test the fix. Agents remember what worked.',
     images: ['/og.png'],
   },

@@ -30,9 +30,9 @@ export function NewRepairForm() {
         <label className={safety === 'low_risk' ? 'selected' : ''}><input type="radio" name="safety_classification" value="low_risk" checked={safety === 'low_risk'} onChange={() => setSafety('low_risk')} /><ShieldCheck /><span><strong>Low risk</strong><small>External cleaning, adjustment, accessories, non-powered parts.</small></span></label>
         <label className={safety === 'moderate_risk' ? 'selected' : ''}><input type="radio" name="safety_classification" value="moderate_risk" checked={safety === 'moderate_risk'} onChange={() => setSafety('moderate_risk')} /><Sparkles /><span><strong>Moderate risk</strong><small>Opening consumer electronics, batteries, internal repair.</small></span></label>
         <label className={safety === 'professional_recommended' ? 'selected' : ''}><input type="radio" name="safety_classification" value="professional_recommended" checked={safety === 'professional_recommended'} onChange={() => setSafety('professional_recommended')} /><AlertTriangle /><span><strong>Professional recommended</strong><small>Mains, gas, high voltage, critical vehicle or structural systems.</small></span></label>
-      </div>{safety === 'professional_recommended' && <div className="professional-inline"><AlertTriangle />MendSignal will preserve the case history but will not provide dangerous procedural instructions. Qualified service is recommended.</div>}</div></div>
+      </div>{safety === 'professional_recommended' && <div className="professional-inline"><AlertTriangle />Pulse will preserve the case history but will not provide dangerous procedural instructions. Qualified service is recommended.</div>}</div></div>
       {error && <div className="form-error"><AlertTriangle />{error}</div>}
-      <div className="form-submit"><span>Community text is untrusted data and never changes MendSignal’s tool instructions.</span><button disabled={loading} type="submit">{loading ? <><LoaderCircle className="spin" /> Creating case…</> : <>Create repair case <ArrowRight /></>}</button></div>
+      <div className="form-submit"><span>Community text is untrusted data and never changes Pulse’s tool instructions.</span><button disabled={loading} type="submit">{loading ? <><LoaderCircle className="spin" /> Creating case…</> : <>Create repair case <ArrowRight /></>}</button></div>
     </form>
   );
 }
