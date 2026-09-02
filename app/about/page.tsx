@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowRight, Bot, Eye, HeartHandshake, Network, ShieldCheck, UserRound, Wrench } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 
@@ -12,7 +13,7 @@ export default function AboutPage() {
         <p className="eyebrow">The open repair mission</p>
         <h1>Humans test the fix.<br /><span>Agents remember what worked.</span></h1>
         <p>Repair knowledge is everywhere and nowhere. Pulse turns individual physical-world observations into structured evidence the next person—and their agent—can use.</p>
-        <figure className="mission-image"><img src="/og.png" alt="Pulse timeline connecting human repair observations to verified evidence" /></figure>
+        <figure className="mission-image"><Image src="/og.png" width={1536} height={1024} alt="Pulse timeline connecting human repair observations to verified evidence" /></figure>
       </section>
       <section className="human-agent-grid">
         <article><span><Bot /></span><p className="mono-label">THE AGENT</p><h2>Does the information work.</h2><ul>{agentTasks.map((task) => <li key={task}><CheckIcon />{task}</li>)}</ul></article>

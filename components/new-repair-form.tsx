@@ -1,7 +1,10 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import Link from 'next/link';
+import { useState } from 'react';
+import type { SyntheticEvent } from 'react';
 import { AlertTriangle, ArrowRight, CheckCircle2, LoaderCircle, ShieldCheck, Sparkles } from 'lucide-react';
+import type { RepairCase } from '@/lib/domain';
 
 export function NewRepairForm() {
   const [safety, setSafety] = useState('low_risk');
@@ -9,18 +12,22 @@ export function NewRepairForm() {
   const [error, setError] = useState('');
   const [created, setCreated] = useState<{ id: string } | null>(null);
 
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
     event.preventDefault(); setLoading(true); setError('');
     const form = new FormData(event.currentTarget);
-    const input = { category: form.get('category'), brand: form.get('brand'), model: form.get('model'), product_name: form.get('product_name'), problem_description: form.get('problem_description'), symptoms: String(form.get('symptoms')).split(',').map((value) => value.trim()).filter(Boolean), safety_classification: form.get('safety_classification'), difficulty: form.get('difficulty') };
+    const value = (name: string) => {
+      const entry = form.get(name);
+      return typeof entry === 'string' ? entry : '';
+    };
+    const input = { category: value('category'), brand: value('brand'), model: value('model'), product_name: value('product_name'), problem_description: value('problem_description'), symptoms: value('symptoms').split(',').map((item) => item.trim()).filter(Boolean), safety_classification: value('safety_classification'), difficulty: value('difficulty') };
     try {
-      const response = await fetch('/api/repairs', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) }); const data: any = await response.json();
-      if (!response.ok) throw new Error(data.error); setCreated(data.repair); window.dispatchEvent(new CustomEvent('pulse:mutated', { detail: { description: `Human created ${data.repair.id}`, repair: data.repair } }));
+      const response = await fetch('/api/repairs', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) }); const data = await response.json() as { repair: RepairCase; error?: string };
+      if (!response.ok) throw new Error(data.error ?? 'The repair could not be created.'); setCreated(data.repair); window.dispatchEvent(new CustomEvent('pulse:mutated', { detail: { description: `Human created ${data.repair.id}`, repair: data.repair } }));
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'The repair could not be created.'); }
     finally { setLoading(false); }
   };
 
-  if (created) return <div className="creation-success"><CheckCircle2 /><p className="mono-label">REPAIR CASE CREATED</p><h2>{created.id} is ready for a human + agent repair trail.</h2><p>The case now appears in the public repair memory. Ask your agent to add the first safe diagnostic step.</p><a href={`/repairs/${created.id}`}>Open repair case <ArrowRight /></a></div>;
+  if (created) return <div className="creation-success"><CheckCircle2 /><p className="mono-label">REPAIR CASE CREATED</p><h2>{created.id} is ready for a human + agent repair trail.</h2><p>The case now appears in the public repair memory. Ask your agent to add the first safe diagnostic step.</p><Link href={`/repairs/${created.id}`}>Open repair case <ArrowRight /></Link></div>;
 
   return (
     <form className="new-repair-form" onSubmit={submit}>
@@ -36,4 +43,3 @@ export function NewRepairForm() {
     </form>
   );
 }
-

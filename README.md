@@ -5,7 +5,7 @@
 Pulse is a public repair evidence network where people test fixes in the physical world and AI agents preserve what actually worked through WebMCP.
 
 - Live application: https://pulse.alx21.chatgpt.site
-- Source repository: https://github.com/agammann/pulse
+- Source repository: https://github.com/agammann/pulse-webmcp
 
 ![Pulse social preview](public/og.png)
 
@@ -37,6 +37,15 @@ The AI does information work. The human interacts with the physical object. Puls
 - `/about` — open repair mission and human-agent model
 
 The app ships with 30 clearly labeled synthetic repair cases across game controllers, keyboards, computer peripherals, small electronics, bicycles, home-office equipment, and cables. They include overlapping symptoms, different outcomes, costs, times, and community evidence so search results are meaningful on first load.
+
+## Machine-readable discovery
+
+- `/robots.txt` publishes a crawler policy and points to the sitemap.
+- `/sitemap.xml` lists the stable public product and repair surfaces.
+- `/llms.txt` summarizes Pulse's public content, safety boundaries, data provenance, and agent interface.
+- Canonical metadata and Schema.org `WebApplication` JSON-LD identify the production application and public source repository.
+
+These discovery resources describe the site; they do not replace WebMCP. Compatible browsers discover and invoke the live page-side tools registered on `document.modelContext`.
 
 ## Architecture
 
@@ -83,7 +92,7 @@ Each definition contains explicit JSON Schema, required fields, bounded input le
 Requirements: Node.js 22.13+ and pnpm.
 
 ```bash
-git clone https://github.com/agammann/pulse.git
+git clone https://github.com/agammann/pulse-webmcp.git
 cd pulse
 pnpm install
 pnpm dev
@@ -103,16 +112,16 @@ No `.env` values are required. `.env.example` documents the zero-secret setup.
 
 ```bash
 pnpm dev          # local app
-pnpm test         # seven workflow tests
+pnpm test         # workflow, contract, discovery, and security-baseline tests
 pnpm lint         # static linting
 pnpm build        # production worker build
 ```
 
-The automated suite covers search, retrieval, case creation, diagnostic-step creation, diagnostic-result recording, outcome recording, and validation failures. See [WEBMCP_TESTING.md](WEBMCP_TESTING.md) for browser and judge testing.
+The automated suite covers search, retrieval, case creation, diagnostic-step creation, diagnostic-result recording, outcome recording, validation failures, WebMCP contracts, discovery resources, and the response-header baseline. See [WEBMCP_TESTING.md](WEBMCP_TESTING.md) for browser and judge testing.
 
 ## Security and repair safety
 
-Community repair text is untrusted data, never trusted tool metadata or agent instruction. Inputs are constrained in both WebMCP JSON Schema and server handlers. Mutation routes validate values, apply basic per-IP rate limiting, and return safe errors. There is no delete tool.
+Community repair text is untrusted data, never trusted tool metadata or agent instruction. Inputs are constrained in both WebMCP JSON Schema and server handlers. Mutation routes validate values, apply basic per-IP rate limiting, and return safe errors. There is no delete tool. Production responses also set a same-origin Content Security Policy, HSTS, MIME-sniffing protection, a strict referrer policy, and a restrictive browser permissions policy.
 
 Every repair is classified as low risk, moderate risk, or professional recommended. Professional-risk histories remain readable, but Pulse refuses procedural diagnostic-step creation and directs the user to qualified service. See [SECURITY.md](SECURITY.md) for the complete trust model and reporting process.
 
@@ -145,4 +154,3 @@ Built for the OpenAI WebMCP Challenge. Pulse uses the challenge's current impera
 ## License
 
 MIT © 2026 Pulse contributors. See [LICENSE](LICENSE).
-

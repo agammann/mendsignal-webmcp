@@ -8,6 +8,7 @@ void test('WebMCP contracts describe every input and keep metadata declarative',
 
   for (const contract of contracts) {
     assert.doesNotMatch(contract.description, /\b(?:do not|must|never)\b/i, `${contract.name} metadata should describe behavior rather than instruct an agent`);
+    assert.ok(Array.isArray(contract.inputSchema.required), `${contract.name} should explicitly declare its required inputs`);
 
     const properties = (contract.inputSchema.properties ?? {}) as Record<string, { description?: unknown; type?: unknown; items?: { description?: unknown } }>;
     for (const [propertyName, property] of Object.entries(properties)) {

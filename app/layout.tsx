@@ -34,22 +34,32 @@ const structuredData = {
   '@type': 'WebApplication',
   name: 'Pulse',
   url: 'https://pulse.alx21.chatgpt.site/',
-  description: 'An open repair memory where people and AI agents search, test, and contribute structured repair evidence.',
+  description: 'The open repair memory for humans and AI agents.',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Any modern web browser',
   isAccessibleForFree: true,
+  codeRepository: 'https://github.com/agammann/pulse-webmcp',
+  license: 'https://opensource.org/license/mit',
+  featureList: [
+    'Search structured repair evidence',
+    'Record human-observed diagnostic results',
+    'Publish durable repair outcomes',
+    'Expose shared application capabilities through WebMCP',
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <WebMcpProvider />
+      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+        <WebMcpProvider />
       </body>
     </html>
   );

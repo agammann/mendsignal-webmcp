@@ -21,12 +21,10 @@ export function mutationRateLimit(request: Request, limit = 30, windowMs = 60_00
   const now = Date.now();
   removeExpiredWindows(now);
   const current = windows.get(key);
-
   if (!current || current.resetAt <= now) {
     windows.set(key, { count: 1, resetAt: now + windowMs });
     return null;
   }
-
   if (current.count >= limit) {
     const retryAfterSeconds = Math.max(1, Math.ceil((current.resetAt - now) / 1000));
     return Response.json(
@@ -34,7 +32,6 @@ export function mutationRateLimit(request: Request, limit = 30, windowMs = 60_00
       { status: 429, headers: { 'Retry-After': String(retryAfterSeconds) } },
     );
   }
-
   current.count += 1;
   return null;
 }

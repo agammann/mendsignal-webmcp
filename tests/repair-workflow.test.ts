@@ -4,7 +4,7 @@ import { seedCases } from '../lib/seed-data.ts';
 import { rankRepairCases } from '../lib/search.ts';
 import { parseCreateCase, parseOutcome, parseResult, parseStep, ValidationError } from '../lib/validation.ts';
 
-test('search repair cases ranks controller stick drift evidence', () => {
+void test('search repair cases ranks controller stick drift evidence', () => {
   const results = rankRepairCases(seedCases, { query: 'controller stick drift', limit: 10 });
   assert.ok(results.length >= 4);
   assert.ok(results.length <= 8);
@@ -14,7 +14,7 @@ test('search repair cases ranks controller stick drift evidence', () => {
   assert.ok(results[0].relevance >= results.at(-1)!.relevance);
 });
 
-test('retrieve a complete case by public id', () => {
+void test('retrieve a complete case by public id', () => {
   const repair = seedCases.find((item) => item.id === 'MS-1001');
   assert.ok(repair);
   assert.equal(repair.brand, 'Sony');
@@ -22,13 +22,13 @@ test('retrieve a complete case by public id', () => {
   assert.equal(repair.outcome?.outcome, 'fixed');
 });
 
-test('create case validation returns normalized structured input', () => {
+void test('create case validation returns normalized structured input', () => {
   const created = parseCreateCase({ category: ' Game controllers ', brand: 'Sony', model: 'CFI-ZCT1W', product_name: 'DualSense', problem_description: 'Left stick drifts upward.', symptoms: [' stick drift ', 'ghost input'], safety_classification: 'low_risk' });
   assert.deepEqual(created.symptoms, ['stick drift','ghost input']);
   assert.equal(created.difficulty, 'moderate');
 });
 
-test('add diagnostic step preserves reason and expected result', () => {
+void test('add diagnostic step preserves reason and expected result', () => {
   const repair = structuredClone(seedCases[0]);
   const step = parseStep({ test: 'Inspect the exterior stick gap with a light.', expected_result: 'No visible debris.', reason: 'Separate contamination from wear before opening the controller.' });
   repair.diagnostic_steps.push({ id: 'MS-1001-DS-2', sequence: 2, ...step, observed_result: null, notes: null, status: 'proposed', created_at: new Date().toISOString() });
@@ -36,7 +36,7 @@ test('add diagnostic step preserves reason and expected result', () => {
   assert.match(repair.diagnostic_steps.at(-1)!.reason, /contamination/);
 });
 
-test('record diagnostic result completes the matching step', () => {
+void test('record diagnostic result completes the matching step', () => {
   const repair = structuredClone(seedCases[0]);
   repair.diagnostic_steps[0].status = 'proposed'; repair.diagnostic_steps[0].observed_result = null;
   const result = parseResult({ step_id: repair.diagnostic_steps[0].id, observed_result: 'Cleaning did not change the drift.', notes: 'Tested twice.' });
@@ -46,7 +46,7 @@ test('record diagnostic result completes the matching step', () => {
   assert.match(step.observed_result!, /did not change/);
 });
 
-test('record repair outcome captures cost, time, and final fix', () => {
+void test('record repair outcome captures cost, time, and final fix', () => {
   const repair = structuredClone(seedCases[4]);
   const outcome = parseOutcome({ outcome: 'fixed', final_fix: 'Replaced the worn joystick module.', cost: 14, time_minutes: 52, notes: 'Input monitor now centers.' });
   repair.status = outcome.outcome;
@@ -56,7 +56,7 @@ test('record repair outcome captures cost, time, and final fix', () => {
   assert.equal(repair.status, 'fixed');
 });
 
-test('validation rejects oversized and unsafe schema values', () => {
+void test('validation rejects oversized and unsafe schema values', () => {
   assert.throws(() => parseCreateCase({ category: 'x', brand: 'x', model: 'x', product_name: 'x', problem_description: 'short', symptoms: [], safety_classification: 'unknown' }), ValidationError);
   assert.throws(() => parseOutcome({ outcome: 'deleted', final_fix: 'x', cost: -1, time_minutes: 1, notes: '' }), ValidationError);
 });

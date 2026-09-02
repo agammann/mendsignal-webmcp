@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Bot, CheckCircle2, Code2, Database, Eye, PencilLine, ShieldCheck } from 'lucide-react';
+import { Bot, CheckCircle2, Eye, PencilLine } from 'lucide-react';
 
 const tools = [
   ['search_repairs','Search the public repair knowledge base','read'],['get_repair_case','Retrieve the complete structured repair history','read'],['create_repair_case','Create a public repair case','write'],['add_diagnostic_step','Add a proposed diagnostic step','write'],['add_diagnostic_result','Record the human’s observation','write'],['record_repair_attempt','Document an attempted repair and parts','write'],['record_repair_outcome','Record the final verified outcome','write'],['mark_case_helpful','Add community verification evidence','write'],['list_common_failures','Compare recurring problems and solutions','read'],['get_repair_statistics','Return aggregate repair statistics','read'],
@@ -12,10 +12,15 @@ export function WebMcpToolList() {
   const [registered, setRegistered] = useState<string[]>([]);
   useEffect(() => {
     const context = document.modelContext ?? navigator.modelContext;
-    if (!context) { setDetected(false); return; }
-    setDetected(true);
-    const timer = window.setTimeout(() => context.getTools?.().then((items) => setRegistered(items.map((item) => item.name))).catch(() => {}), 250);
-    return () => window.clearTimeout(timer);
+    const detectionTimer = window.setTimeout(() => setDetected(Boolean(context)), 0);
+    if (!context) return () => window.clearTimeout(detectionTimer);
+    const toolsTimer = window.setTimeout(() => {
+      void context.getTools?.().then((items) => setRegistered(items.map((item) => item.name))).catch(() => {});
+    }, 250);
+    return () => {
+      window.clearTimeout(detectionTimer);
+      window.clearTimeout(toolsTimer);
+    };
   }, []);
   return <>
     <div className={`webmcp-availability ${detected === false ? 'missing' : ''}`}><span>{detected === false ? <Bot /> : <CheckCircle2 />}</span><div><strong>{detected === false ? 'WebMCP not detected' : detected === null ? 'Checking WebMCP…' : 'WebMCP available'}</strong><p>{detected === false ? 'The human interface remains fully available in ordinary browsers.' : `${registered.length || tools.length} structured tools are registered on this page.`}</p></div></div>

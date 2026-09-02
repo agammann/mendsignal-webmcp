@@ -26,6 +26,8 @@ Use Chrome 149 or newer. In builds where WebMCP is still experimental:
 
 The page's bottom-right status dock must display either **WebMCP available** or **WebMCP not detected · human interface remains available**. The latter is expected in browsers without the experimental API and is not a page failure.
 
+Static site scanners can verify `/robots.txt`, `/sitemap.xml`, `/llms.txt`, canonical metadata, and JSON-LD, but they cannot prove that the browser exposed the experimental WebMCP API or that a registered mutation changed durable state. Use the live tool path above as the authoritative WebMCP test.
+
 ## Tool-by-tool checks
 
 | Tool | Minimal input | Expected result |

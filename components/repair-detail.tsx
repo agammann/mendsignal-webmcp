@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react';
 import { AlertTriangle, Check, CheckCircle2, Circle, Clock3, Coins, ExternalLink, Heart, LoaderCircle, ShieldCheck, ThumbsDown, ThumbsUp, Wrench } from 'lucide-react';
 import type { RepairCase } from '@/lib/domain';
 import { outcomeLabel, safetyLabel } from '@/lib/domain';
@@ -10,22 +11,22 @@ export function RepairDetail({ initialRepair }: { initialRepair: RepairCase }) {
   const [busy, setBusy] = useState('');
   const [notice, setNotice] = useState('');
 
-  const refresh = async () => {
-    try { const response = await fetch(`/api/repairs/${repair.id}`); const data: any = await response.json(); if (response.ok) setRepair(data.repair); } catch { /* Bundled fallback remains visible. */ }
-  };
+  const refresh = useCallback(async () => {
+    try { const response = await fetch(`/api/repairs/${repair.id}`); const data = await response.json() as { repair: RepairCase }; if (response.ok) setRepair(data.repair); } catch { /* Bundled fallback remains visible. */ }
+  }, [repair.id]);
   useEffect(() => {
     const onMutation = (event: Event) => {
       const detail = (event as CustomEvent<{ repair?: RepairCase }>).detail;
-      if (detail?.repair?.id === repair.id) setRepair(detail.repair); else refresh();
+      if (detail?.repair?.id === repair.id) setRepair(detail.repair); else void refresh();
       setNotice('This case was updated through WebMCP.');
     };
     window.addEventListener('pulse:mutated', onMutation);
     return () => window.removeEventListener('pulse:mutated', onMutation);
-  }, [repair.id]);
+  }, [refresh, repair.id]);
 
   const vote = async (voteType: string) => {
     setBusy(voteType); setNotice('');
-    try { const response = await fetch(`/api/repairs/${repair.id}/votes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ vote_type: voteType }) }); const data: any = await response.json(); if (!response.ok) throw new Error(data.error); setRepair(data.repair); setNotice('Your verification was added to the repair evidence.'); }
+    try { const response = await fetch(`/api/repairs/${repair.id}/votes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ vote_type: voteType }) }); const data = await response.json() as { repair: RepairCase; error?: string }; if (!response.ok) throw new Error(data.error ?? 'Vote failed.'); setRepair(data.repair); setNotice('Your verification was added to the repair evidence.'); }
     catch { setNotice('The live database is not available in this preview.'); }
     finally { setBusy(''); }
   };
@@ -61,9 +62,8 @@ export function RepairDetail({ initialRepair }: { initialRepair: RepairCase }) {
           {repair.outcome && <div className="evidence-facts"><span>Recorded outcome<strong>{outcomeLabel(repair.outcome.outcome)}</strong></span><span>Repair time<strong>{repair.outcome.time_minutes} min</strong></span><span>Actual cost<strong>${repair.outcome.cost}</strong></span><span>Difficulty<strong>{repair.difficulty}</strong></span></div>}
         </section>
         <section className="verification-card"><h3>Did this evidence help?</h3><p>Add your result to the shared repair memory.</p><button disabled={Boolean(busy)} onClick={() => vote('helpful')}>{busy === 'helpful' ? <LoaderCircle className="spin" /> : <Heart />} Helpful</button><button disabled={Boolean(busy)} onClick={() => vote('worked_for_me')}>{busy === 'worked_for_me' ? <LoaderCircle className="spin" /> : <ThumbsUp />} Worked for me</button><button disabled={Boolean(busy)} onClick={() => vote('did_not_work')}>{busy === 'did_not_work' ? <LoaderCircle className="spin" /> : <ThumbsDown />} Did not work</button></section>
-        <section className="agent-prompt-card"><p className="mono-label">TRY WITH YOUR AGENT</p><h3>Continue this repair with WebMCP</h3><code>“Open {repair.id} and suggest the safest next diagnostic question.”</code><a href="/webmcp">See judge test prompts <ExternalLink /></a></section>
+        <section className="agent-prompt-card"><p className="mono-label">TRY WITH YOUR AGENT</p><h3>Continue this repair with WebMCP</h3><code>“Open {repair.id} and suggest the safest next diagnostic question.”</code><Link href="/webmcp">See judge test prompts <ExternalLink /></Link></section>
       </aside>
     </div>
   );
 }
-

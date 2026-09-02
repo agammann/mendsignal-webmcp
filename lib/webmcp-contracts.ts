@@ -22,6 +22,7 @@ export const webMcpToolContracts = {
         difficulty: { type: 'string', enum: ['easy','moderate','advanced'], description: 'Reported repair difficulty to require in matching histories.' },
         limit: { type: 'integer', minimum: 1, maximum: 20, description: 'Maximum number of matching repair cases to return.' },
       },
+      required: [],
       additionalProperties: false,
     },
   },
@@ -149,6 +150,7 @@ export const webMcpToolContracts = {
         model: { type: 'string', maxLength: 100, description: 'Product model name or identifier to summarize.' },
         category: { type: 'string', maxLength: 80, description: 'Repair category to summarize.' },
       },
+      required: [],
       additionalProperties: false,
     },
   },
@@ -156,6 +158,6 @@ export const webMcpToolContracts = {
     name: 'get_repair_statistics',
     description: 'Returns aggregate public Pulse statistics, successful repairs, items kept in service, leading categories, and recently solved cases.',
     annotations: { readOnlyHint: true, untrustedContentHint: true },
-    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+    inputSchema: { type: 'object', properties: {}, required: [], additionalProperties: false },
   },
 } satisfies Record<string, WebMcpToolContract>;
