@@ -91,7 +91,7 @@ WebMCP, Next.js, React, TypeScript, Vinext, Tailwind CSS, Cloudflare Workers, Cl
 
 - Live application: **https://pulse.alx21.chatgpt.site**
 - Source code: **https://github.com/agammann/pulse**
-- Demo video: **https://youtu.be/TlpEn9vFPhI**
+- Demo video: **https://youtu.be/HALFLa5KM6E**
 
 ## Suggested gallery captions
 
